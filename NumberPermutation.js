@@ -9,16 +9,28 @@ define(function(){
       }
       return temp;
     }());
-    console.log(valArr);
-//    for (var i=val.length-1; i=0; i--){
-//
-//    }
-//    valArr.splice(2,0);
-    var move = valArr.pop()
-    valArr.splice(valArr.length-1,0,move);
-    console.log(valArr);
-  }
+    console.log('valArr', valArr);
 
+    for (var i=1,j=valArr.length-1; j>=0; j--, i++){
+      var currentVal= (function(){
+        var out='';
+        for (var i=0; i<valArr.length; i++){
+          out+=val[i];
+        }
+        return out;
+      }());
+
+      if (Number(valArr.join('')) <= currentVal){
+        var move = valArr.pop();
+        valArr.splice(valArr.length-i,0,move)
+      }
+      else {
+        console.log('valArr', valArr.join(''));
+        break;
+      }
+    }
+
+  }
 
   return NumberPermutation;
 })

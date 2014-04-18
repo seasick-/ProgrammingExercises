@@ -48,5 +48,6 @@ require(['StringScramble'], function(StringScramble){
 
 require(['NumberPermutation'], function(NumberPermutation){
   var out = NumberPermutation(12453);
+  var out = NumberPermutation(123);
 })
 
