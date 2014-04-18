@@ -1,0 +1,21 @@
+{
+  "name": "ProgrammingChallenges",
+  "version": "0.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-express": "~1.2.1",
+    "grunt-express-server": "~0.4.13",
+    "express": "~4.0.0",
+    "morgan": "~1.0.0",
+    "body-parser": "~1.0.2",
+    "method-override": "~1.0.0"
+  }
+}
