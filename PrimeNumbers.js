@@ -8,7 +8,7 @@ define(function(){
         temp.push(i);
       }
     }
-    console.log(temp);
+    return temp;
   }
 
   return PrimeNumbers;

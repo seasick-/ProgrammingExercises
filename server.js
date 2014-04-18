@@ -24,5 +24,5 @@ app.get('/getQuotes', function(req,res){
 })
 
 
-app.listen(3001);
-console.log('Check port 3001');
+app.listen(3002);
+console.log('Check port 3000');

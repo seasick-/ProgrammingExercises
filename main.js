@@ -34,10 +34,19 @@ require(['Palindrome'], function(Palindrome){
 
 require(['TwoCharSpaceCheck'], function(TwoCharSpaceCheck){
   var out = TwoCharSpaceCheck('after badly');
-  console.log(out);
+//  console.log(out);
 });
 
 require(['PrimeNumbers'], function(PrimeNumbers){
   var out = PrimeNumbers(50);
+});
+
+require(['StringScramble'], function(StringScramble){
+  var out = StringScramble('h3llko', 'hello');
+//  console.log(out);
+});
+
+require(['NumberPermutation'], function(NumberPermutation){
+  var out = NumberPermutation(12453);
 })
 
