@@ -1,6 +1,7 @@
 define(function(){
 
   function NumberPermutation(val){
+
     var valArr = (function(){
       val = String(val);
       var temp=[];
@@ -12,15 +13,15 @@ define(function(){
     console.log('valArr', valArr);
 
     for (var i=1,j=valArr.length-1; j>=0; j--, i++){
-      var currentVal= (function(){
-        var out='';
-        for (var i=0; i<valArr.length; i++){
-          out+=val[i];
-        }
-        return out;
-      }());
+//      var currentVal= (function(){
+//        var out='';
+//        for (var i=0; i<valArr.length; i++){
+//          out+=val[i];
+//        }
+//        return out;
+//      }());
 
-      if (Number(valArr.join('')) <= currentVal){
+      if (Number(valArr.join('')) <= val){
         var move = valArr.pop();
         valArr.splice(valArr.length-i,0,move)
       }
@@ -33,5 +34,4 @@ define(function(){
   }
 
   return NumberPermutation;
-})
-
+});
