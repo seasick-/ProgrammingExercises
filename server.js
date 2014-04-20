@@ -23,6 +23,6 @@ app.get('/getQuotes', function(req,res){
   res.send(quotes);
 })
 
-var port = 3001
+var port = 3003
 app.listen(port);
 console.log('Check port ' + port);

@@ -56,10 +56,16 @@ require(['NumberPermutation'], function(NumberPermutation){
 require(['LinkedList'], function(LinkedList){
   var list = new LinkedList();
   list.add(45);
-  list.add(46);
-  console.log(list.getItem(45));
-  console.log(list);
-  list.remove(45);
+  list.add(49);
+  list.add(47);
+  list.add(48);
+//  console.log(list.getItem(45));
+//  console.log(list);
+  list.remove(49);
+
+  list.insert(45, 3);
+//  console.log(list);
+  list.remove(48);
   console.log(list);
 })
 
