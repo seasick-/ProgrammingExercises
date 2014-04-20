@@ -24,4 +24,4 @@ define(function(){
     return temp;
   }
   return ConsecutiveNumbers;
-})
+});

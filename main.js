@@ -53,7 +53,13 @@ require(['NumberPermutation'], function(NumberPermutation){
 //  console.log(out);
 })
 
-require(['ArrayAddition'], function(ArrayAddition){
-  var out = ArrayAddition([4, 6, 23, 10, 1, 3])
+require(['LinkedList'], function(LinkedList){
+  var list = new LinkedList();
+  list.add(45);
+  list.add(46);
+  console.log(list.getItem(45));
+  console.log(list);
+  list.remove(45);
+  console.log(list);
 })
 

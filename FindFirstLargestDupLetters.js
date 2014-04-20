@@ -1,49 +1,174 @@
-define(function(){
+var blogAppViewController = angular.module ('blogAppViewController', []);
 
-  function countDuplicates(val){
-    var store=[];
-    var count=1;
-    for (var i=0; i<val.length; i++){
-      for (var j=i+1; j<val.length; j++){
-        if (val[i]===val[j]){
-          count++
-          break;
-        }
+blogAppViewController.factory('sharedService', function ($rootScope){
+  var shared = {};
+
+  shared._idList=[];
+  shared.globalPAGECount=0;
+  shared.recentList=[];
+  shared.index_List=[];
+  shared.oneTime_Toggle=true;
+  return shared;
+});
+
+blogAppViewController.controller('post_View_Ctrl', function ($scope, $http, $routeParams, $location, sharedService, $sce) {
+
+  console.log('allposts');
+  sharedService._idList=[];
+  sharedService.globalPAGECount=0;
+  sharedService.recentList=[];
+  sharedService.index_List=[];
+
+  $http.get('/allposts').success(function(input_data) {
+    var post_Buffer=[];
+    if (input_data.length>5){
+      for (var i=0; i<5; i++){
+        post_Buffer.push(input_data[i]);
       }
     }
-    return count;
-  }
+    $scope.posts = input_data;
+    $scope.TrustDangerousSnippet = function(snippet) {
+      return $sce.trustAsHtml(snippet.slice(0,300)+'...');
+    };
 
-  function findFirstLargestDupLetters(val){
-    var store=[];
-    for (var i=0; i<val.split(' ').length; i++){
-      store.push({
-        index: i,
-        word: val.split(' ')[i],
-        duplicates: countDuplicates(val.split(' ')[i])
+    var posts_Length=$scope.posts.length;
+
+    for (var i=0; i<5; i++){
+      sharedService.recentList[i] = input_data[i];
+    }
+
+    $scope.post1=sharedService.recentList[0];
+    $scope.post2=sharedService.recentList[1];
+    $scope.post3=sharedService.recentList[2];
+    $scope.post4=sharedService.recentList[3];
+    $scope.post5=sharedService.recentList[4];
+
+    sharedService._idList.push({"Page":1, "_id":$scope.posts[0]._id});
+    var count=0;
+    var PageCount=2;
+    for (var each in $scope.posts){
+      count++;
+      if (count==5){
+        sharedService._idList.push({"Page": PageCount, "_id": $scope.posts[each]._id});
+        count=0;
+        PageCount++;
+      }
+    }
+
+    sharedService._idList.push({"Page": PageCount, "_id":$scope.posts[posts_Length-1]._id});
+    var listLength = sharedService._idList.length;
+    if(sharedService._idList[listLength-1]._id == sharedService._idList[listLength-2]._id ){
+      sharedService._idList.pop();
+    }
+    $scope.idList_Copy=sharedService._idList;
+    console.log("here", sharedService._idList);
+
+    $scope.numbers=[];
+    for (var i=0; i<sharedService._idList.length - sharedService.globalPAGECount; i++){
+      $scope.numbers.push({"number":sharedService.globalPAGECount+i+1, "id":sharedService._idList[sharedService.globalPAGECount+i]['_id']});
+      sharedService.index_List.push({"number":sharedService.globalPAGECount+i+1, "id":sharedService._idList[sharedService.globalPAGECount+i]['_id']});
+    }
+
+    if (input_data.length>5){
+      $scope.posts = post_Buffer;
+      console.log(post_Buffer);
+    }
+  });
+
+  $scope.selectSearch = function(input) {
+    $scope.Search1 = input;
+    if ($scope.Search1 == 'Title'){
+      $scope.searchTitle = true;
+      $scope.searchContent = false;
+
+      $scope.search_Hits=null;
+    }
+    if ($scope.Search1 == 'Post Content'){
+      $scope.searchTitle = false;
+      $scope.searchContent = true;
+      $scope.search_Hits=null;
+    }
+  };
+
+  $scope.searchDatabase = function(type, input) {
+    if (type === 'Title') {
+      $http.post('/search_post_Titles', {title: input}).success(function (response) {
+        $scope.search_Hits = response;
       });
     }
-    console.log(JSON.stringify(store));
+    if (type === 'Post Content') {
+      $http.post('/search_post_Content', {post: input}).success( function (response) {
+        $scope.search_Hits = response;
+      });
+    }
+  };
 
-    for (var i=0 ; i<store.length; i++){
-      for (var j=i+1; j<store.length; j++){
-        if (store[i].duplicates<store[j].duplicates){
-          var temp = store[i];
-          store[i] = store[j];
-          store[j] = temp;
-        }
-      }
-    }
+});
 
-    if (store[0].duplicates > store[1].duplicates){
-      return store[0].word
-    }
-    else if (store[0].duplicates === store[1].duplicates){
-      if (store[0].index<store[1].index) return store[0].word;
-      else return store[1].word;
-    }
+blogAppViewController.controller('range_View_Ctrl', function ($scope, $http, $routeParams, $location, sharedService, $sce) {
+
+  console.log("Range View Controller Initalized");
+  console.log("High:",$routeParams.high,"Low:", $routeParams.low);
+  if (sharedService.oneTime_Toggle!=true){
+    $http.get('/get_posts/high/' + $routeParams.high + '/low/' + $routeParams.low).success(function (input_data) {
+      $scope.posts = input_data;
+      $scope.TrustDangerousSnippet = function(snippet) {
+        return $sce.trustAsHtml(snippet.slice(0,300)+'...');
+      };
+      $scope.post1=sharedService.recentList[0];
+      $scope.post2=sharedService.recentList[1];
+      $scope.post3=sharedService.recentList[2];
+      $scope.post4=sharedService.recentList[3];
+      $scope.post5=sharedService.recentList[4];
+    });
+  }
+  sharedService.oneTime_Toggle=false;
+
+  $scope.numbers=[];
+  console.log(sharedService._idList.length - sharedService.globalPAGECount);
+  for (var i=0; i<sharedService._idList.length - sharedService.globalPAGECount; i++){
+    $scope.numbers.push({"number":sharedService.globalPAGECount+i+1, "id":sharedService._idList[sharedService.globalPAGECount+i]['_id']});
   }
 
-  return findFirstLargestDupLetters
+  for (var each in $scope.numbers){
+    console.log($scope.numbers[each]);
+  }
+
+  $scope.incrementPAGE =function (event) {
+    event.preventDefault();
+    console.log("increment");
+
+    var pag_Length = $('.pagination li').length;
+    console.log(pag_Length);
+
+    if(pag_Length<7){
+      return;
+    }
+
+    sharedService.globalPAGECount+=5;
+    for (var i=0; i<5; i++){
+      $scope.numbers.shift();
+    }
+
+  };
+
+  $scope.decrementPAGE =function (event) {
+    event.preventDefault();
+    var pag_Length = $('.pagination li').length;
+    console.log(pag_Length);
+
+    if (pag_Length >= sharedService._idList.length - sharedService.globalPAGECount){
+      return;
+    }
+
+    console.log("decrement");
+    sharedService.globalPAGECount-=5;
+
+    $scope.numbers=[];
+    console.log(sharedService._idList.length - sharedService.globalPAGECount);
+    for (var i=0; i<sharedService._idList.length - sharedService.globalPAGECount; i++){
+      $scope.numbers.push({"number":sharedService.globalPAGECount+i+1, "id":sharedService._idList[sharedService.globalPAGECount+i]['_id']});
+    }
+  };
 
 });

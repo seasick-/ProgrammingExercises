@@ -13,4 +13,3 @@ define(function(){
 
   return PrimeNumbers;
 })
-
