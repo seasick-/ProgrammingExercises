@@ -72,13 +72,18 @@ require(['LinkedList'], function(LinkedList){
 require(['LinkedListAlt'], function(LinkedListAlt){
   var list = new LinkedListAlt();
   list.add(23);
-  console.log(list);
+//  console.log(list);
   list.add(45);
   list.add(55);
   list.add(75);
-  console.log(list);
+//  console.log(list);
   for (var i=0; i<4; i++){
-    list.getItem(i);
+//    list.getItem(i);
   }
 });
+
+require(['CountDuplicates'], function(CountDuplicates){
+  console.log('this')
+  var out = CountDuplicates([5,6,3,2,5,6]);
+})
 

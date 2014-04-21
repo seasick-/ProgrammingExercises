@@ -16,8 +16,9 @@ define(function(){
         }
       }
 
-      if ( isPrime != 0 )
-        console.log(i)
+      if ( isPrime != 0 ){
+//        console.log(i)
+      }
     }
 
     return temp;
