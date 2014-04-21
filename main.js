@@ -39,6 +39,7 @@ require(['TwoCharSpaceCheck'], function(TwoCharSpaceCheck){
 
 require(['PrimeNumbers'], function(PrimeNumbers){
   var out = PrimeNumbers(50);
+//  console.log(out);
 });
 
 require(['StringScramble'], function(StringScramble){
@@ -66,6 +67,18 @@ require(['LinkedList'], function(LinkedList){
   list.insert(45, 3);
 //  console.log(list);
   list.remove(48);
+});
+
+require(['LinkedListAlt'], function(LinkedListAlt){
+  var list = new LinkedListAlt();
+  list.add(23);
   console.log(list);
-})
+  list.add(45);
+  list.add(55);
+  list.add(75);
+  console.log(list);
+  for (var i=0; i<4; i++){
+    list.getItem(i);
+  }
+});
 

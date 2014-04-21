@@ -74,7 +74,6 @@ define(function(){
       }
     }
     for (var i=0; i<listOBJ.length-1; i++){
-      console.log(i);
       listOBJ[i].next = listOBJ[i+1]
     }
     listOBJ[i].next = null;
@@ -117,7 +116,7 @@ define(function(){
     }
     temp[i].next = null;
     this.head = temp[0];
-    console.log(this.head);
+//    console.log(this.head);
   }
 
   return LinkedList;
