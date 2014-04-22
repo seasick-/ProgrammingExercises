@@ -32,7 +32,6 @@ define(function(){
       count=1;
     }
     console.log(temp);
-
   }
 
   return CountDuplicates;

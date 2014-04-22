@@ -84,6 +84,15 @@ require(['LinkedListAlt'], function(LinkedListAlt){
 
 require(['CountDuplicates'], function(CountDuplicates){
   console.log('this')
-  var out = CountDuplicates([5,6,3,2,5,6]);
+  var out = CountDuplicates([5,6,3,2,6,5,6]);
 })
 
+require(['Graph'], function(Graph){
+  var graph = new Graph(5);
+  graph.addEdge(0,1);
+  graph.addEdge(0,2);
+  graph.addEdge(1,3);
+  graph.addEdge(2,4);
+  graph.showGraph();
+  graph.dfs(0);
+})
