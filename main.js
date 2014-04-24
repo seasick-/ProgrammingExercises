@@ -83,8 +83,7 @@ require(['LinkedListAlt'], function(LinkedListAlt){
 });
 
 require(['CountDuplicates'], function(CountDuplicates){
-  console.log('this')
-  var out = CountDuplicates([5,6,3,2,6,5,6]);
+//  var out = CountDuplicates([5,6,3,2,6,5,6]);
 })
 
 require(['Graph'], function(Graph){
@@ -93,6 +92,31 @@ require(['Graph'], function(Graph){
   graph.addEdge(0,2);
   graph.addEdge(1,3);
   graph.addEdge(2,4);
-  graph.showGraph();
-  graph.dfs(0);
+//  graph.showGraph();
+//  graph.dfs(0);
+
 })
+
+require(['Cards'], function(Cards){
+  var dealer = new Cards.Dealer('Terry');
+
+  var user = new Cards.User('Wayne');
+  var set = user.getSet(dealer);
+
+  user.returnCard(set['firstCard'], dealer);
+
+});
+
+require(['Sort'], function(Sort){
+  var sort = Sort([55,4,0,34]);
+});
+
+
+
+
+
+
+
+
+
+

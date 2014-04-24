@@ -8,7 +8,6 @@ define(function(){
       this.adj[i] = [];
       this.adj[i].push("");
     }
-    console.log('this.adj', this.adj );
     this.addEdge = addEdge;
     this.showGraph = showGraph;
     this.dfs = dfs;
@@ -33,19 +32,18 @@ define(function(){
       }
     }
   }
-
   function dfs(v) {
     this.marked[v] = true;
     if (this.adj[v] != undefined) {
       console.log("Visited vertex: " + v);
     }
+
     for (var w in this.adj[v]) {
       if (!this.marked[w]) {
-      this.dfs(w);
+        this.dfs(w);
       }
     }
   }
-
   return Graph;
 })
 
