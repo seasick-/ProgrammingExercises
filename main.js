@@ -120,5 +120,27 @@ require(['StringSort'], function(StringSort){
 });
 
 require(['DistinctList'], function(DistinctList){
-  var out = DistinctList([1,2,2,2,3,3]);
+//  var out = DistinctList([1,2,2,2,3,3]);
 });
+
+require(['TripleDouble'], function(TripleDouble){
+//  var out = TripleDouble(451999277,41177722899);
+});
+
+require(['SimpleSymbols'], function(SimpleSymbols){
+//  var out = SimpleSymbols('+d+=3=+s+z+k+');
+});
+
+require(['SecondGreatLow'], function(SecondGreatLow){
+  var out = SecondGreatLow([7,7,12,98,106]);
+})
+
+require(['StringReverse'], function(StringReverse){
+//  var out = StringReverse('this');
+});
+
+require(['CaesarCipher'], function(CaesarCipher){
+  var out = CaesarCipher('Caesar Cipher');
+});
+
+
