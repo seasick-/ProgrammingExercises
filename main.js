@@ -112,9 +112,13 @@ require(['Sort'], function(Sort){
 });
 
 require(['PatternChaser'], function(PatternChaser){
-  var patternChaser = PatternChaser('da2kr32a2');
+//  var patternChaser = PatternChaser('da2kr32a2');
 });
 
 require(['StringSort'], function(StringSort){
 //  var sort = StringSort('aba dcb adc')
+});
+
+require(['DistinctList'], function(DistinctList){
+  var out = DistinctList([1,2,2,2,3,3]);
 });
