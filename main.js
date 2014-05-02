@@ -94,29 +94,27 @@ require(['Graph'], function(Graph){
   graph.addEdge(2,4);
 //  graph.showGraph();
 //  graph.dfs(0);
+//  graph.bfs(0);
 
 })
 
 require(['Cards'], function(Cards){
-  var dealer = new Cards.Dealer('Terry');
-
-  var user = new Cards.User('Wayne');
-  var set = user.getSet(dealer);
-
-  user.returnCard(set['firstCard'], dealer);
-
+//  var dealer = new Cards.Dealer('Terry');
+//
+//  var user = new Cards.User('Wayne');
+//  var set = user.getSet(dealer);
+//
+//  user.returnCard(set['firstCard'], dealer);
 });
 
 require(['Sort'], function(Sort){
-  var sort = Sort([55,4,0,34]);
+//  var sort = Sort([55,4,0,34]);
 });
 
+require(['PatternChaser'], function(PatternChaser){
+  var patternChaser = PatternChaser('da2kr32a2');
+});
 
-
-
-
-
-
-
-
-
+require(['StringSort'], function(StringSort){
+//  var sort = StringSort('aba dcb adc')
+});
